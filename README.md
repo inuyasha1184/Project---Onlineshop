@@ -14,3 +14,7 @@ This shop would have following main functions:
 
 This shop will be developed based on HTML5, CSS3, Javascript, PHP and MySQL
 
+Features:
+- Responsive design
+
+

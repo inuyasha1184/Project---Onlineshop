@@ -1,0 +1,60 @@
+
+#page{
+	width: 100%;
+	
+}
+/*div#login, div#transparent_bgr{
+	display: block;
+}*/
+button {
+	margin: 10px auto;
+	left: 0;
+}
+div#login {
+	width: 50%;
+}
+
+@media only screen and (max-width:670px){
+	#container, #row, #left_sidebar, #content, #right_sidebar {
+		display: block;
+	}
+	#content {
+		min-width: 300px;
+	}
+	aside{
+		width:100%;
+		height: 10%;
+	}
+	li {
+		display: block;
+	}
+	a {
+		margin: 0px auto;	
+		width: 100%;
+	}
+	div#login {
+		width: 80%;
+		left:10%;
+		right: 10%;
+	}
+	div#transparent_bgr{
+		height: 120%;
+	}
+}
+@media only screen and (max-width:320px) and (min-width: 240px){
+	li {
+		display: block;
+	}
+	a {
+		margin: 0px auto;	
+		width: 100%;
+	}
+	#content {
+		min-width:220px;
+	}
+	div#login {
+		width: 100%;
+		left: 0;
+	}
+	
+}

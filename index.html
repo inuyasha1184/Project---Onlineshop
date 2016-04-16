@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Uebung 5 - Responsive layout</title>
+	<meta charset="utf-8" />
+	<meta name="lina" content="html css uebung" />
+	<link href="css/reset.css" rel="stylesheet" />
+	<link href="css/normalize.css" rel="stylesheet" />
+	<link href="index2.css" rel="stylesheet" />
+	<link href="responsive2.css" rel="stylesheet" media="only screen and (max-width:1023px)"/>
+	<!-- using the magic of overflow property -->
+	<!--<link href="index2.css" rel="stylesheet" />-->
+	
+</head>
+
+<body onload="init()">
+	
+	<div id="page">
+
+		<header>
+			
+			<div id="logo" class="border">
+				<a href=""><img src="images/logo.png" alt="logo"/></a>
+			</div>
+			<div id="account">
+				<nav id="navigation">
+					<ul>
+						<!--<span class="invisible">Account</span><img id="user_logo" src="images/user.png">-->
+						<li class="border">
+							<div class="invisible">
+								<a href="#" id="login_link" onclick="showForm();">Account</a>
+							</div>
+							<div id="user_logo">
+								<a href="" onclick="showForm();"><img src="images/user.png"/></a>
+							</div>
+						</li>
+						<li class="border">
+							<div class="invisible">
+								<a href="#">Cart</a>
+								</div>
+							<div id="user_logo"><a href=""><img src="images/cart.png"/></a></div>
+						</li>					
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="news">
+			<div id="news_text">
+				<p>News</p>
+			</div>	
+			<div id="search">
+					<input type="search" name="search"/>
+					<label for="search">Search</label>
+			</div>
+		</div>
+
+		<div id="container">
+			<div id="row">
+				<div id="hambuger" onclick="event.preventDefault(); showMenuCat()">
+					<a href="#" >Menu &#9776;</a>
+					<!--onclick="event.preventDefault(); showMenuCat()"-->
+				</div>
+				<aside id="left_sidebar">
+					
+					<nav id="category">
+						<ul id="cat">
+							<li><a href="#" class="active">Category 1</a></li>
+								<ul id="subcat">
+									<li><a href="product/category.html" class="active">Sub Category 1</a></li>
+									<li><a href="#">Sub Category 2</a></li>									
+								</ul>
+							<li><a href="#">Category 2</a></li>
+							<li><a href="#">Category 3</a></li>
+							<li><a href="#">Category 4</a></li>
+						</ul>
+					</nav>
+					
+					<div id="info">
+						<ul>
+							<li><a href="#">Infos</a></li>
+							<li><a href="#">Facebook</a></li>
+						</ul>
+					</div>
+				</aside>
+				<div id="content">
+					<div id="transparent_bgr">
+						<div id="form">
+							
+								<form id="form_login" onsubmit="return login()" method="post" action="">
+									<label name="username" for="username" id="username_label" value="">Username</label>
+									<input type="text" id="username" name="username" />
+									<br>
+									<label name="password" for="password" id="username_password" value="">Password</label>
+									<input type="password" id="password" name="password" />
+									<br>
+									<button id="login_submit" type="submit">Sign in</button>
+									<button id="login_cancel" type="reset" onclick="unshowForm();">Cancel</button>
+									<br>
+									<a href="#registration" onclick="toggleForm('registration')">Registration</a>	
+								</form>
+								
+							
+								<form id="form_registration" onsubmit="return registration();" method="post" action="user/success.php">
+									<label name="username" for="name">Username</label>
+									<input type="text" id="username_reg" name="username" onblur='checkUsername(this);' />
+									<br>
+									
+									<label name="email" for="email"/>Email</label>
+									<input type="email" id="email" name="email"/>
+									<br>
+									
+									<label name="password" for="password">Password</label>
+									<input type="password" id="password_reg" name="pass" />
+									<br>
+									<label name="password" for="password">Password</label>
+									<input type="password" id="password_2" name="pass2" />
+									<br>
+									<button id="registration_submit" type="submit">Sign up</button>
+									<button id="registration_cancel" type="reset" onclick="unshowForm();">Cancel</button>
+									<br>
+									<a href="#login" onclick="toggleForm('login')">Login</a>
+								</form>
+								
+						</div>
+					</div>
+					<div id="items">
+						<div class="brand_1">						
+							<div class="brand_logo"><img class="logo" src="images/logo.png"/></div>
+							<br>
+								<a href=""><img class="img1" src="images/test.jpg"></a>
+								<a href=""><img class="img2" src="images/test.jpg"></a>
+								<a href=""><img class="img3" src="images/test.jpg"></a>
+							<p class="more">More ...</p>
+						</div>
+						<div class="brand_2">
+							<div class="brand_logo"><img class="logo" src="images/logo.png"/></div>
+							<br>
+								<a href=""><img class="img1" src="images/test.jpg"></a>
+								<a href=""><img class="img2" src="images/test.jpg"></a>
+								<a href=""><img class="img3" src="images/test.jpg"></a>
+							<p class="more">More ...</p>							
+						</div>
+						<div class="brand_3">
+							<div class="brand_logo"><img class="logo" src="images/logo.png"/></div>
+							<br>
+								<a href=""><img class="img1" src="images/test.jpg"></a>
+								<a href=""><img class="img2" src="images/test.jpg"></a>
+								<a href=""><img class="img3" src="images/test.jpg"></a>
+							<p class="more">More ...</p>							
+						</div>	
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<footer>
+			<hr>
+			<p>Keep update</p>
+		</footer>
+	</div>
+<script src="js/index.js"></script>
+
+</body>
+
+
+</html>

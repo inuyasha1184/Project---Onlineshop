@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* just something to let us see where it is */
+#showMe
+{
+    width: 200px;
+    height: 75px;
+    border: solid 3px red;
+}
+</style>
+ 
+<script>
+function byId(e){return document.getElementById(e);}
+ 
+// flag used in the onmouseout and onmouse over listeners for the 'Show/Hide' btn
+// used to ensure we only have 1 valid listener at a time. If mouse enters button, no need to listen for body mouse-clicks
+// if mouse leaves button, no need to listen for button clicks
+// (prevents both the btnClick and bodyClick functions firing when the pop-up is shown and the button is clicked - 2 events
+// means the pop-up is closed then opened again - albeit too fast to see. The pop-up appears to remain motionless/unchanged.
+var isVisible = false;
+ 
+// handle cliks on the show/hide button
+// just toggle the visible state
+function btnClick(e)
+{
+    var tgt = document.getElementById('showMe');
+    switch (isVisible)
+    {
+        case false:
+            tgt.style.display = 'block';
+            isVisible = true;
+            break;
+ 
+        default:
+            tgt.style.display = 'none';
+            isVisible = false;
+    }
+}
+ 
+// handle clicks on the document body
+//
+// first make sure we don't come from a click on either the show/hide button or the popup itself.
+// then re-attach the listener to the button and remove it from the body. - clicking the body with the popup close
+// should do nothing. Clicking the button on the other hand, definitely should do something
+function bodyClick(e)
+{
+    e = e || event;
+    var tgt = document.getElementById('showMe');
+    if ( ( e.srcElement != byId('showMe')) && (e.srcElement != byId('mBtn')) )
+    {
+        tgt.style.display = 'none';
+        isVisible = false;
+        document.removeEventListener('click', bodyClick, true);
+        byId('mBtn').addEventListener('click', btnClick, true);
+    }
+}
+ 
+
+function myInit()
+{
+        // fire the event whenever we click the show/hide btn
+        byId('mBtn').addEventListener('click', btnClick, true);
+
+        byId('mBtn').addEventListener(
+                                        'mouseover',
+                                        function()
+                                        {
+                                            if (isVisible)
+                                            {
+                                                document.removeEventListener('click', bodyClick, true);
+                                                byId('mBtn').addEventListener('click', btnClick, true);
+                                            }
+                                        },
+                                        true);
+ 
+
+        byId('mBtn').addEventListener(
+                                        'mouseout',
+                                        function()
+                                        {
+                                            if (isVisible)
+                                            {
+                                                document.addEventListener('click', bodyClick, true);
+                                                byId('mBtn').removeEventListener('click', btnClick, true);
+                                            }
+                                        },
+                                        true);
+}
+ 
+
+</script>
+ 
+</head>
+    <body onload='myInit();'>
+        <div id="test">
+        <input id='mBtn' type='button' value='Show/Hide'/>
+        <div id='showMe' style='display: none;'>
+            I contain hidden content. Pop-me-up!
+        </div>
+        </div>
+        <br>
+        <input type='button' onclick='alert("Hello World!");' value='test alert(...)'/>
+    </body>
+</html>
